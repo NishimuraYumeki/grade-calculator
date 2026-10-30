@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade Calculator</title>
+
+<link rel="stylesheet" href="css/ionic.bundle.css">
+<script type="module" src="ionic/ionic.esm.js"></script>
+
+<style>
+  body {
+    background-color: #f0f2f5;
+  }
+
+  .form-box {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 2px solid #3880ff;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  #result {
+    text-align: center;
+    margin-top: 15px;
+    color: #3880ff;
+  }
+
+  #remark {
+    text-align: center;
+    color: #444;
+  }
+</style>
+</head>
+<body>
+
+<ion-app>
+
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Grade Calculator</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+
+    <div class="form-box">
+
+      <ion-item>
+        <ion-label position="floating">Math Grade</ion-label>
+        <ion-input id="math" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">English Grade</ion-label>
+        <ion-input id="eng" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Science Grade</ion-label>
+        <ion-input id="sci" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Filipino Grade</ion-label>
+        <ion-input id="fil" type="number"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" style="margin-top: 15px;" onclick="computeAverage()">
+        Compute Average
+      </ion-button>
+
+      <h2 id="result"></h2>
+      <h3 id="remark"></h3>
+
+    </div>
+
+  </ion-content>
+
+</ion-app>
+
+<script>
+  function computeAverage() {
+    // Get input values
+    let math = document.getElementById("math").value;
+    let eng = document.getElementById("eng").value;
+    let sci = document.getElementById("sci").value;
+    let fil = document.getElementById("fil").value;
+
+    math = parseFloat(math);
+    eng = parseFloat(eng);
+    sci = parseFloat(sci);
+    fil = parseFloat(fil);
+
+    let average = (math + eng + sci + fil) / 4;
+
+    let remark = "";
+    if (average >= 90) {
+      remark = "Excellent!";
+    } else if (average >= 85) {
+      remark = "Good";
+    } else if (average >= 75) {
+      remark = "Passed";
+    } else {
+      remark = "Failed";
+    }
+
+    document.getElementById("result").textContent = "Average: " + average;
+    document.getElementById("remark").textContent = "Remark: " + remark;
+  }
+</script>
+
+</body>
+</html>
